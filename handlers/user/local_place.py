@@ -43,7 +43,9 @@ class FindNearPlaceProgram:
     def run_handler(self) -> None:
         dp.register_message_handler(self.set_self_location,
                                     Text(equals="Заведения рядом", ignore_case=True),
-                                    state=FSMWorkProgram.main_menu)
+                                    state=[FSMWorkProgram.main_menu,
+                                           FSMWorkProgram.admin_main_menu,
+                                           FSMWorkProgram.pa_main_menu])
         dp.register_message_handler(self.get_near_place,
                                     content_types=["location"],
                                     state=FSMWorkProgram.set_self_location)

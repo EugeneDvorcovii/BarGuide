@@ -92,7 +92,7 @@ class AnnounceSettings:
             await FSMWorkProgram.set_announce_category.set()
 
     async def set_announce(self, msg: types.Message):
-        category_btn = self.data_client.get_announce_category_list()
+        category_btn = self.data_client.get_announce_category_list()[1]
         await msg.answer("Выберите категорию для нового мероприятия.",
                          reply_markup=create_keyboards(category_btn, cancel_btn=True))
         await FSMWorkProgram.set_announce.set()
@@ -103,7 +103,7 @@ class AnnounceSettings:
             async with state.proxy() as data:
                 data["category_title"] = msg.text
                 data["category_id"] = announce_category_id
-            place_btn = self.data_client.get_place_list()
+            place_btn = self.data_client.get_all_place_list()[1]
             await msg.answer("Выберите в каком заведении проходит мероприятие.",
                              reply_markup=create_keyboards(place_btn, cancel_btn=True))
             await FSMWorkProgram.set_announce_category_id.set()
@@ -141,7 +141,7 @@ class AnnounceSettings:
             await msg.answer("Неккоректное значение, повторите.")
 
     async def set_announce_price(self, msg: types.Message, state: FSMContext):
-        if len(msg.text) > 5:
+        if len(msg.text) > 2:
             async with state.proxy() as data:
                 data["price"] = msg.text
                 await msg.answer("Введите ссылку на билет.")
@@ -183,20 +183,20 @@ class AnnounceSettings:
                        f"Дата: {data['date']}\nВремя: {data['time']}"
             await msg.answer_photo(data["photo"], back_msg,
                                    reply_markup=create_keyboards(list(), yes_no_btn=True))
-            await FSMWorkProgram.set_announce_time.set()
+            await FSMWorkProgram.set_announce_photo.set()
 
     async def save_new_announce(self, msg: types.Message, state: FSMContext):
         if msg.text == "Да":
             async with state.proxy() as data:
-                result = self.data_client.set_announce(title=data["announce_title"],
-                                                       description=data["announce_description"],
-                                                       category_id=data["category_id"],
+                result = self.data_client.set_announce(category_id=data["category_id"],
                                                        place_id=data["place_id"],
-                                                       price=data["price"],
-                                                       link_ticker=data["ticker_link"],
+                                                       title=data["announce_title"],
+                                                       description=data["announce_description"],
+                                                       ticker_price=data["price"],
+                                                       ticker_link=data["ticker_link"],
                                                        date=data["date"],
-                                                       time=data["time"],
-                                                       photo_link=data["photo"])
+                                                       time_value=data["time"],
+                                                       photo_id=data["photo"])
             if result:
                 await msg.answer("Мероприятие добавлено.",
                                  reply_markup=create_keyboards(self.btn_admin_main_menu))

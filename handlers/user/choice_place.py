@@ -42,7 +42,9 @@ class WatchPlacesProgram:
     def run_handler(self) -> None:
         dp.register_message_handler(self.get_categories,
                                     Text(equals="Смотреть заведения", ignore_case=True),
-                                    state=FSMWorkProgram.main_menu)
+                                    state=[FSMWorkProgram.main_menu,
+                                           FSMWorkProgram.admin_main_menu,
+                                           FSMWorkProgram.pa_main_menu])
         dp.register_message_handler(self.get_places,
                                     state=FSMWorkProgram.get_place_category)
 

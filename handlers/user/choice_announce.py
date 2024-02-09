@@ -44,7 +44,9 @@ class ChoiceAnnounceProgram:
     def run_handler(self) -> None:
         dp.register_message_handler(self.get_categories,
                                     Text(equals="Мероприятия", ignore_case=True),
-                                    state=FSMWorkProgram.main_menu)
+                                    state=[FSMWorkProgram.main_menu,
+                                           FSMWorkProgram.admin_main_menu,
+                                           FSMWorkProgram.pa_main_menu])
         dp.register_message_handler(self.get_announce,
                                     state=FSMWorkProgram.get_announce_category)
         dp.register_message_handler(self.choice_announce,

@@ -92,7 +92,7 @@ class PlaceSettings:
             await FSMWorkProgram.set_place_category.set()
 
     async def set_place(self, msg: types.Message):
-        category_btn = self.data_client.get_place_category_list()
+        category_btn = self.data_client.get_place_category_list()[1]
         await msg.answer("Выберите категорию для нового места.",
                          reply_markup=create_keyboards(category_btn, cancel_btn=True))
         await FSMWorkProgram.set_place.set()
@@ -180,7 +180,7 @@ class PlaceSettings:
                                                     site=data["place_site"],
                                                     contact=data["place_contact"],
                                                     work_time=data["place_work_time"],
-                                                    photo_link=data["place_photo"])
+                                                    photo_id=data["place_photo"])
             if result:
                 await msg.answer("Заведение добавлено.",
                                  reply_markup=create_keyboards(self.btn_admin_main_menu))

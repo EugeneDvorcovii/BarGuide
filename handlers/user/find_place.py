@@ -36,7 +36,9 @@ class FindPlaceProgram:
     def run_handler(self) -> None:
         dp.register_message_handler(self.set_title_place,
                                     Text(equals="Найти заведение", ignore_case=True),
-                                    state=FSMWorkProgram.main_menu)
+                                    state=[FSMWorkProgram.main_menu,
+                                           FSMWorkProgram.admin_main_menu,
+                                           FSMWorkProgram.pa_main_menu])
         dp.register_message_handler(self.get_suitable_place,
                                     state=FSMWorkProgram.set_title_place)
 

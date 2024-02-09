@@ -30,10 +30,14 @@ data_client.set_reserve(place_id=1, user_name="some name", user_id="some id", da
 data_client.set_place_admin(place_id=1, user_name="some name", user_id="some_id")
 print(data_client.get_table_info("user"))
 print(data_client.get_suitable_place(title="test 2"))
-print(data_client.get_place_list(2))
+print(data_client.get_place_list(1))
 
 print(data_client.get_place_from_category(1))
 print(data_client.get_place_category_id("test 1"))
+print("dassfdasf")
+print(data_client.get_place_category_list())
+print(data_client.get_announce_category_list())
+print(data_client.get_place_list(0))
 # print(data_client.get_exist(f"EXIST (SELECT * FROM {data_client.DATABASE_NAME}.user);"))
 
 ##############

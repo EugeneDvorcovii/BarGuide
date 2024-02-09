@@ -90,6 +90,10 @@ class UserClient:
             await msg.reply("Вам доступны функции администратора.",
                             reply_markup=create_keyboards(["Перейти"]))
             await FSMWorkProgram.to_admin_main_menu.set()
+        else:
+            await msg.reply("Вы уже админ.",
+                            reply_markup=create_keyboards(["Перейти"]))
+            await FSMWorkProgram.to_admin_main_menu.set()
 
     async def test_image(self, msg: types.Message):
         image_link = msg.photo[-1]["file_id"]
@@ -105,12 +109,12 @@ class UserClient:
                                     Text(equals="О проекте", ignore_case=True),
                                     state=FSMWorkProgram.main_menu)
         dp.register_message_handler(self.set_new_admin,
-                                    Text(equals="qq", ignore_case=True),
+                                    Text(equals="to_admin", ignore_case=True),
                                     state="*")
-        dp.register_message_handler(self.test_image,
-                                    content_types=["photo"],
-                                    state="*"
-                                    )
+        # dp.register_message_handler(self.test_image,
+        #                             content_types=["photo"],
+        #                             state="*"
+        #                             )
 
         # Run programs for bot function
         self.WatchPlacesProgram.run_handler()

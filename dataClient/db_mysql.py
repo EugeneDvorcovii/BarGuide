@@ -503,6 +503,11 @@ class DataClient:
         result = self.get_list_values(request=request)
         return [len(result) > 0, result]
 
+    def get_all_place_list(self) -> list:
+        request = f"SELECT title FROM {self.DATABASE_NAME}.place;"
+        result = self.get_list_values(request=request)
+        return [len(result) > 0, result]
+
     def get_place_list(self, category_id: int) -> list:
         request = f"SELECT title FROM {self.DATABASE_NAME}.place WHERE category_id = '{category_id}';"
         result = self.get_list_values(request=request)
