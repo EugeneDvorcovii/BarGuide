@@ -3,9 +3,9 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 
 MAIN_TOKEN = "6486870977:AAHeE8jNCvaGlmFfmWsLTHPzxhr0lKeAR40"
 
-host = "127.0.0.1"
-user = "user_3"
-password = "passWORD1234!"
+host = "host"
+user = "user"
+password = "password"
 
 
 class FSMWorkProgram(StatesGroup):
