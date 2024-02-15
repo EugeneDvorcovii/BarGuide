@@ -1,7 +1,7 @@
 from aiogram.dispatcher.filters.state import StatesGroup, State
 
 
-MAIN_TOKEN = "6486870977:AAHeE8jNCvaGlmFfmWsLTHPzxhr0lKeAR40"
+MAIN_TOKEN = "MAIN_TOKEN"
 
 host = "host"
 user = "user"
@@ -44,58 +44,4 @@ class FSMWorkProgram(StatesGroup):
     save_reserve = State()
     save_new_reserve = State()
 
-    # Admin work
-    to_admin_main_menu = State()
-    admin_main_menu = State()
-    admin_settings = State()
-
-    place_settings_option = State()
-    # Place category settings
-    set_place_category = State()
-    set_place_category_title = State()
-    set_place_category_description = State()
-    save_new_place_category = State()
-    # Place settings
-    set_place = State()
-    set_place_category_id = State()
-    set_place_title = State()
-    set_place_description = State()
-    set_place_address = State()
-    set_place_site_link = State()
-    set_place_photo = State()
-    set_place_contact = State()
-    set_place_work_time = State()
-    save_new_place = State()
-
-    announce_settings_option = State()
-    # Announce category settings
-    set_announce_category = State()
-    set_announce_category_title = State()
-    set_announce_category_description = State()
-    save_new_announce_category = State()
-    # Announce settings
-    set_announce = State()
-    set_announce_category_id = State()
-    set_announce_place_id = State()
-    set_announce_title = State()
-    set_announce_description = State()
-    set_announce_price = State()
-    set_announce_link_ticker = State()
-    set_announce_date = State()
-    set_announce_time = State()
-    set_announce_photo = State()
-
-    # Place admin work
-    start_create_pa = State()
-    pa_main_menu = State()
-
-    pa_settings_menu = State()
-    # Settings of place information
-
-    # Settings of announce information
-
-    # Settings of menu information
-
-    pa_reserve_menu = State()
-    # Show list of reserves
 
